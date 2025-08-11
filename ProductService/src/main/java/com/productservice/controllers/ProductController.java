@@ -7,6 +7,7 @@ import com.productservice.models.Product;
 import com.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -40,7 +41,9 @@ public class ProductController {
     }
 
     @ExceptionHandler(ProductNotFoundException.class)
-    private ExceptionDTO handlePNFException(ProductNotFoundException exception){
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+//    @ResponseBody
+    public ExceptionDTO handlePNFException(ProductNotFoundException exception){
         return new ExceptionDTO(exception.getMessage(), "Failure");
     }
 
