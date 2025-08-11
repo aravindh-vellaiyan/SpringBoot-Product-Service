@@ -1,17 +1,13 @@
 package com.productservice.controllers;
 
-import com.productservice.dtos.ExceptionDTO;
 import com.productservice.exceptions.ProductNotFoundException;
 import com.productservice.models.Category;
 import com.productservice.models.Product;
 import com.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -38,13 +34,6 @@ public class ProductController {
     @GetMapping("/category/")
     public List<Product> getProductsByCategory(Category category){
         return null;
-    }
-
-    @ExceptionHandler(ProductNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-//    @ResponseBody
-    public ExceptionDTO handlePNFException(ProductNotFoundException exception){
-        return new ExceptionDTO(exception.getMessage(), "Failure");
     }
 
 }
