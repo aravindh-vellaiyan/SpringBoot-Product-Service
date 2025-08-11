@@ -29,7 +29,7 @@ public class FakeStoreServiceImpl implements ProductService {
         RestTemplate template = rtBuilder.build();
         ResponseEntity<FakeStoreProductDTO[]> productsArr = template.getForEntity(url + "/products", FakeStoreProductDTO[].class);
         if(productsArr.getBody() == null){
-            throw new ProductNotFoundException();
+            throw new ProductNotFoundException("Products not available.!");
         }
         List<Product> products = new LinkedList<>();
         for(FakeStoreProductDTO fakeStoreProductDTO : productsArr.getBody()){
@@ -43,7 +43,7 @@ public class FakeStoreServiceImpl implements ProductService {
         RestTemplate restTemplate = rtBuilder.build();
         ResponseEntity<FakeStoreProductDTO> responseEntity = restTemplate.getForEntity(url + "/products/" + id, FakeStoreProductDTO.class);
         if(responseEntity.getBody() == null){
-            throw new ProductNotFoundException();
+            throw new ProductNotFoundException("Product not found for the Id " + id);
         }
         return responseEntity.getBody().getProductObjectFromDTO();
     }
