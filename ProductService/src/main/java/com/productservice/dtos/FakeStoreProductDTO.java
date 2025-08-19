@@ -13,14 +13,4 @@ public class FakeStoreProductDTO {
     private String description;
     private Long price;
     private String category;
-
-    public Product getProductObjectFromDTO(){
-        Product product = new Product();
-        product.setId(this.getId());
-        product.setDesc(this.getDescription());
-        product.setTitle(this.getTitle());
-        product.setPrice(this.getPrice());
-        product.setCategory(new Category(null, this.getCategory()));
-        return product;
-    }
 }

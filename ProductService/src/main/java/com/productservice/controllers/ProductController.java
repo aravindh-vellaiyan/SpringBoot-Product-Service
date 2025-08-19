@@ -1,5 +1,6 @@
 package com.productservice.controllers;
 
+import com.productservice.exceptions.ProductException;
 import com.productservice.exceptions.ProductNotFoundException;
 import com.productservice.models.Category;
 import com.productservice.models.Product;
@@ -34,6 +35,16 @@ public class ProductController {
     @GetMapping("/category/")
     public List<Product> getProductsByCategory(Category category){
         return null;
+    }
+
+    @PostMapping
+    public Product addProduct(@RequestBody Product product){
+        return productService.addProduct(product);
+    }
+
+    @DeleteMapping("/{id}")
+    public Product deleteProduct(@PathVariable Long id){
+        return productService.deleteProductById(id);
     }
 
 }

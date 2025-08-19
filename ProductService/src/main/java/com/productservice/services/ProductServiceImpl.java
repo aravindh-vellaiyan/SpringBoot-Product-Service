@@ -1,7 +1,6 @@
 package com.productservice.services;
 
 import com.productservice.models.Product;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,13 +19,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteProductById(Long id) {
-
+    public Product deleteProductById(Long id) {
+        return null;
     }
 
     @Override
-    public void addProduct(Product product) {
+    public Product addProduct(Product product) {
 
+        return product;
     }
 
     @Override
