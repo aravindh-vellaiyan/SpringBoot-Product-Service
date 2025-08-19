@@ -8,8 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-//@ControllerAdvice
-@ControllerAdvice(assignableTypes = ProductController.class)
+@ControllerAdvice
+//@ControllerAdvice(assignableTypes = ProductController.class)
 public class ProductControllerAdvice {
 
     @ExceptionHandler(ProductNotFoundException.class)
