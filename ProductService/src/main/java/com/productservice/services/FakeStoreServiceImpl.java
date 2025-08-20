@@ -1,6 +1,6 @@
 package com.productservice.services;
 
-import com.productservice.controllers.thirdpartyclients.FakeStoreClient;
+import com.productservice.thirdpartyclients.FakeStoreClient;
 import com.productservice.dtos.FakeStoreProductDTO;
 import com.productservice.exceptions.ProductException;
 import com.productservice.exceptions.ProductNotFoundException;

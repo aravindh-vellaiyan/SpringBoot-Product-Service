@@ -1,4 +1,4 @@
-package com.productservice.controllers.thirdpartyclients;
+package com.productservice.thirdpartyclients;
 
 import com.productservice.dtos.FakeStoreProductDTO;
 import com.productservice.exceptions.ProductException;
