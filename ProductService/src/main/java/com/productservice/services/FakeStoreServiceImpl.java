@@ -52,7 +52,7 @@ public class FakeStoreServiceImpl implements ProductService {
 
     }
 
-    public Product getProductObjectFromDTO(FakeStoreProductDTO fakeStoreProductDTO){
+    private Product getProductObjectFromDTO(FakeStoreProductDTO fakeStoreProductDTO){
         Product product = new Product();
         product.setId(fakeStoreProductDTO.getId());
         product.setDesc(fakeStoreProductDTO.getDescription());
@@ -62,7 +62,7 @@ public class FakeStoreServiceImpl implements ProductService {
         return product;
     }
 
-    public FakeStoreProductDTO getDTOFromProduct(Product product){
+    private FakeStoreProductDTO getDTOFromProduct(Product product){
         FakeStoreProductDTO fakeStoreProductDTO = new FakeStoreProductDTO();
         fakeStoreProductDTO.setDescription(product.getDesc());
         fakeStoreProductDTO.setTitle(product.getTitle());
