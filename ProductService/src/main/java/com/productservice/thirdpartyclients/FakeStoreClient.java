@@ -3,8 +3,11 @@ package com.productservice.thirdpartyclients;
 import com.productservice.dtos.FakeStoreProductDTO;
 import com.productservice.exceptions.ProductException;
 import com.productservice.exceptions.ProductNotFoundException;
+import com.productservice.services.FakeStoreServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -17,13 +20,14 @@ import java.util.List;
 @Component
 public class FakeStoreClient {
 
-    private final String url = "https://fakestoreapi.com";
+    private final String url;
 
     private final RestTemplateBuilder rtBuilder;
 
     @Autowired
-    public FakeStoreClient(RestTemplateBuilder builder){
+    public FakeStoreClient(RestTemplateBuilder builder, @Value("${fakestore.api.url}") String url){
         this.rtBuilder = builder;
+        this.url = url;
     }
 
     public List<FakeStoreProductDTO> getAllProducts() throws ProductNotFoundException {
@@ -58,6 +62,15 @@ public class FakeStoreClient {
         ResponseEntity<FakeStoreProductDTO> responseEntity = restTemplate.postForEntity(url + "/products", product, FakeStoreProductDTO.class);
         if(responseEntity.getBody() == null){
             throw new ProductException("Unable to add the product");
+        }
+        return responseEntity.getBody();
+    }
+
+    public FakeStoreProductDTO updateProduct(Long id, FakeStoreProductDTO fakeStoreProductDTO) throws ProductNotFoundException {
+        RestTemplate restTemplate = rtBuilder.build();
+        ResponseEntity<FakeStoreProductDTO> responseEntity = restTemplate.exchange(url + "/products/{id}", HttpMethod.PUT, new HttpEntity<FakeStoreProductDTO>(fakeStoreProductDTO), FakeStoreProductDTO.class, id);
+        if(responseEntity.getBody() == null){
+            throw new ProductNotFoundException("Product not found for the id " + id);
         }
         return responseEntity.getBody();
     }

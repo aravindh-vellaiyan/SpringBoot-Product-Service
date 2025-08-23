@@ -47,4 +47,9 @@ public class ProductController {
         return productService.deleteProductById(id);
     }
 
+    @PutMapping("/{id}")
+    public Product updateProduct(@PathVariable Long id, @RequestBody Product product) throws ProductNotFoundException {
+        return productService.updateProductById(id, product);
+    }
+
 }

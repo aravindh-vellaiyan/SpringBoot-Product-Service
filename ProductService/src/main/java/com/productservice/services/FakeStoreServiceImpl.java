@@ -48,8 +48,8 @@ public class FakeStoreServiceImpl implements ProductService {
     }
 
     @Override
-    public void updateProductById(Product product) {
-
+    public Product updateProductById(Long id, Product product) throws ProductNotFoundException {
+        return getProductObjectFromDTO(client.updateProduct(id, getDTOFromProduct(product)));
     }
 
     private Product getProductObjectFromDTO(FakeStoreProductDTO fakeStoreProductDTO){
