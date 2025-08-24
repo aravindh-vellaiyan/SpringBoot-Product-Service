@@ -8,6 +8,5 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 public class Category extends BaseModel {
-    private Long id;
     private String name;
 }
