@@ -54,7 +54,7 @@ public class FakeStoreServiceImpl implements ProductService {
 
     private Product getProductObjectFromDTO(FakeStoreProductDTO fakeStoreProductDTO){
         Product product = new Product();
-        product.setId(fakeStoreProductDTO.getId());
+//        product.setId(fakeStoreProductDTO.getId());
         product.setDescription(fakeStoreProductDTO.getDescription());
         product.setTitle(fakeStoreProductDTO.getTitle());
         product.setPrice(fakeStoreProductDTO.getPrice());
