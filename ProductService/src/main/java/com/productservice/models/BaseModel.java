@@ -15,5 +15,5 @@ public class BaseModel {
 //    @GenericGenerator(name = "generator_name", strategy = "uuid2")
 //    @Column(name = "id", columnDefinition = "binary(16", nullable = false, updatable = false)
     @Id
-    UUID id;
+    Long id;
 }
