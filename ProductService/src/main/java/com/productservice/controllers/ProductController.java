@@ -1,14 +1,15 @@
 package com.productservice.controllers;
 
-import com.productservice.exceptions.ProductException;
 import com.productservice.exceptions.ProductNotFoundException;
 import com.productservice.models.Category;
 import com.productservice.models.Product;
+import com.productservice.security.services.AuthenticationService;
 import com.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.AccessDeniedException;
 import java.util.List;
 
 @RestController
@@ -16,10 +17,12 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
+    private final AuthenticationService authenticationService;
 
     @Autowired
-    public ProductController(@Qualifier("SelfProductService") ProductService productService) {
+    public ProductController(@Qualifier("SelfProductService") ProductService productService, AuthenticationService authenticationService) {
         this.productService = productService;
+        this.authenticationService = authenticationService;
     }
 
     @GetMapping
@@ -28,8 +31,13 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public Product getProductById(@PathVariable("id") Long id) throws ProductNotFoundException {
-        return productService.getProductById(id);
+    public Product getProductById(@RequestHeader("AuthenticationToken") String token,
+            @PathVariable("id") Long id) throws ProductNotFoundException, AccessDeniedException {
+        if(authenticationService.authenticate(token)) {
+            return productService.getProductById(id);
+        } else {
+            throw new AccessDeniedException("You are not authorized");
+        }
     }
 
     @GetMapping("/category/")

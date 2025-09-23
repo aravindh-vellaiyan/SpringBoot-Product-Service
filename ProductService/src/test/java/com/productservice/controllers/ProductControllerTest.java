@@ -41,7 +41,7 @@ class ProductControllerTest {
 
         //Act
 //        Product product = productController.getProductById(1L);
-        assertThrows(ProductNotFoundException.class, () -> productController.getProductById(1L));
+        assertThrows(ProductNotFoundException.class, () -> productController.getProductById(null,1L));
 
         //Assert
 //        assertEquals(1L, product.getId());
